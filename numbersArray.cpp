@@ -19,7 +19,7 @@ void NumbersArray::Create() {
 }
 
 void NumbersArray::GetRecordsAmountFromUser() {
-    scanf("%i", &recordsAmount);
+    scanf("%i\n", &recordsAmount);
 }
 
 void NumbersArray::InitializeNumbersArray() {

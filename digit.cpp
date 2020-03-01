@@ -11,13 +11,9 @@ bool Digit::IsEndOfLine() {
 }
 
 void Digit::ReadNext() {
-    digit = _getchar_nolock();
+    digit = getchar_unlocked();
 }
 
 char Digit::GetDigit() {
     return digit;
-}
-
-void Digit::ClearInputBuffor() {
-    fflush(stdin);
 }

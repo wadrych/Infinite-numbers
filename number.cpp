@@ -26,8 +26,6 @@ void Number::WriteNumber() {
 }
 
 void Number::CreateNumber() {
-    digit.ClearInputBuffor();
-
     while(!digit.IsEndOfLine()) {
         AddNextDigitToArray();
     }

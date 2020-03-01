@@ -14,6 +14,5 @@ public:
     bool IsEndOfLine();
     void ReadNext();
     char GetDigit();
-    void ClearInputBuffor();
 
 };
