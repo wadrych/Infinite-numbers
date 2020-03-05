@@ -1,6 +1,6 @@
 #pragma once
 
-#include "number.h"
+#include "Number.h"
 
 class Comparer
 {
