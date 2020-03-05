@@ -5,11 +5,11 @@
 #include "Digit.h"
 #include <cinttypes>
 
-typedef struct DigitsList {
+/*typedef struct DigitsList {
     uint_fast8_t digit;
     DigitsList* nextDigit;
 } DigitsList;
-
+*/
 class Number
 {
 private:
@@ -32,8 +32,8 @@ private:
     char* CreateNewDoubledArray();
 
 	
-    bool isPositive;
-    DigitsList* digitList;
+    //bool isPositive;
+   // DigitsList* digitList;
 
 public:
     Number();
