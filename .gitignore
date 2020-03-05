@@ -341,3 +341,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+aids1/Makefile
+aids1/aisd
