@@ -78,7 +78,6 @@ void NumbersArray::WriteMin() {
     numbersArray[indexOfMin]->WriteNumber();
 }
 
-void NumbersArray::Add(int index1, int index2)
-{
+void NumbersArray::Add(int index1, int index2) {
 	
 }

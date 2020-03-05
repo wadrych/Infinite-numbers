@@ -2,97 +2,141 @@
 
 Number::Number() {
     numberOfDigits = 0;
-    digitsArraySize = 50;
-
-    CreateDigitsArray();
-    ClearDigitsArray();
-}
-
-void Number::CreateDigitsArray() {
-    number = (char*)malloc(digitsArraySize * sizeof(char));
-}
-
-void Number::ClearDigitsArray(int beginning) {
-    for (int i = beginning; i < digitsArraySize; i++) {
-        number[i] = '\0';
-    }
+    isPositive = true;
+    firstDigit = NULL;
+    lastDigit = NULL;
+    buffer = NULL;
+    isInitiated = false;
 }
 
 Number::~Number() {
 }
 
 void Number::WriteNumber() {
-    printf("%s \n", number);
+    DigitsList* current = firstDigit;
+
+	if(IsNegative()) {
+        printf("-");
+	}
+	
+    do {
+        printf("%c", (char)current->digit);
+        current = current->nextDigit;
+    } while (current != NULL);
+    printf("\n");
 }
 
 void Number::CreateNumber() {
-    while (!digit.IsEndOfLine()) {
-        AddNextDigitToArray();
+    ReadNextCharToBuffer();
+    while (IsNotEOL()) {
+        CreateNextDigit();
+	}
+}
+bool Number::IsNotEOL()
+{
+    return buffer != '\n';
+}
+
+void Number::CreateNextDigit()
+{
+    if (!isInitiated) {
+        InitiateNumber();
     }
-}
-
-void Number::AddNextDigitToArray() {
-    digit.ReadNext();
-
-    if (!digit.IsEndOfLine()) {
-        AppendNewDigit();
+    else {
+        AddNewDigit();
     }
+	
+    ReadNextCharToBuffer();
 }
 
-void Number::AppendNewDigit() {
-    if (DigitsArrayIsFull()) {
-        ExtendDigitsArray();
+void Number::ReadNextCharToBuffer()
+{
+    buffer = _getchar_nolock();
+}
+
+void Number::InitiateNumber()
+{
+    DetermineSymbol();
+    if (isPositive) {
+        AddNewDigit();
     }
-    AddNewDigit();
+    isInitiated = true;
 }
 
-bool Number::DigitsArrayIsFull() {
-    return digitsArraySize == numberOfDigits;
-}
-
-void Number::ExtendDigitsArray() {
-    int previousSizeOfArray = digitsArraySize;
-    char* tempNumber;
-
-    tempNumber = CreateNewDoubledArray();
-    if (!tempNumber) {
-        ExitProgram();
+void Number::DetermineSymbol()
+{
+	if(buffer == '-') {
+        isPositive = false;
+	}
+    else {
+        isPositive = true;
     }
-    number = tempNumber;
-    ClearDigitsArray(previousSizeOfArray);
-}
-
-char* Number::CreateNewDoubledArray() {
-    digitsArraySize *= doubleSize;
-
-    return (char*)realloc(number, digitsArraySize);
-}
-
-void Number::ExitProgram() {
-    DeleteNumber();
-    exit(0);
-}
-void Number::DeleteNumber() {
-    delete number;
 }
 
 void Number::AddNewDigit() {
-    number[numberOfDigits] = digit.GetDigit();
+    CreateNewListElement();
+    AppendNewDigitToList();
+}
+
+void Number::CreateNewListElement()
+{
+	if(IsEmpty()) {
+        InitiateList();
+	}
+    else {
+        lastDigit->nextDigit = new DigitsList;
+        lastDigit = lastDigit->nextDigit;
+    }
+}
+
+bool Number::IsEmpty()
+{
+    return  numberOfDigits == 0;
+}
+
+
+void Number::InitiateList()
+{
+    firstDigit = new DigitsList;
+    firstDigit->nextDigit = NULL;
+    lastDigit = firstDigit;
+}
+
+void Number::AppendNewDigitToList()
+{
+    lastDigit->digit = (uint_fast8_t)buffer;
+    lastDigit->nextDigit = NULL;
     numberOfDigits++;
 }
 
+
+void Number::DeleteNumber() {
+    DigitsList* current = firstDigit;
+	
+    while (current != NULL) {
+        DigitsList* temp = current->nextDigit;
+        delete current;
+        current = temp;
+    }
+}
+
 bool Number::IsPositive() {
-    return (number[0] != '-');
+    return isPositive;
 }
 
 bool Number::IsNegative() {
-    return !IsPositive();
+    return !isPositive;
 }
 
 size_t Number::GetLength() {
     return numberOfDigits;
 }
 
-char* Number::GetNumber() {
-    return number;
+char Number::GetDigit(int index) {
+    DigitsList* searched_digit = firstDigit;
+    for(int i=0;i<index-1;i++) {
+        searched_digit = searched_digit->nextDigit;
+    }
+
+    return (char)searched_digit->digit;
 }

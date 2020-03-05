@@ -2,39 +2,15 @@
 
 #include "stdio.h"
 #include "stdlib.h"
-#include "Digit.h"
 #include <cinttypes>
 
-/*typedef struct DigitsList {
+typedef struct DigitsList {
     uint_fast8_t digit;
     DigitsList* nextDigit;
 } DigitsList;
-*/
+
 class Number
 {
-private:
-    const int doubleSize = 2;
-
-    char* number;
-    Digit digit;
-    size_t numberOfDigits;
-    size_t digitsArraySize;
-
-    void CreateDigitsArray();
-    void ClearDigitsArray(int beginning = 0);
-    void AppendNewDigit();
-    void CloseNumberArray();
-    void AddNextDigitToArray();
-    void ExtendDigitsArray();
-    void ExitProgram();
-    void AddNewDigit();
-    bool DigitsArrayIsFull();
-    char* CreateNewDoubledArray();
-
-	
-    //bool isPositive;
-   // DigitsList* digitList;
-
 public:
     Number();
     ~Number();
@@ -45,7 +21,26 @@ public:
 
     bool IsPositive();
     bool IsNegative();
-    char* GetNumber();
+    char GetDigit(int index);
     size_t GetLength();
+	
+private:
+    bool isPositive;
+    bool isInitiated; 
+    DigitsList* firstDigit;
+    DigitsList* lastDigit;
+    size_t numberOfDigits;
+    char buffer;
+
+    void ReadNextCharToBuffer();
+    void DetermineSymbol();
+    void InitiateList();
+    void AppendNewDigitToList();
+    bool IsNotEOL();
+    void CreateNextDigit();
+    void InitiateNumber();
+    void AddNewDigit();
+    void CreateNewListElement();
+    bool IsEmpty();
 };
 

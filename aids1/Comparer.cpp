@@ -36,11 +36,11 @@ bool Comparer::BothHaveTheSameSymbol() {
 }
 
 bool Comparer::BothAreNegative() {
-    return (currentNumber->GetNumber()[0] == '-' && comparedToNumber->GetNumber()[0] == '-');
+    return (currentNumber->IsNegative() && comparedToNumber->IsNegative());
 }
 
 bool Comparer::BothArePositive() {
-    return (currentNumber->GetNumber()[0] != '-' && comparedToNumber->GetNumber()[0] != '-');
+    return (currentNumber->IsPositive() && comparedToNumber->IsPositive());
 }
 
 bool Comparer::CompareLength() {
@@ -67,7 +67,7 @@ int Comparer::FindDifferentDigit() {
     int i = 0;
 
     for (i; i < currentNumber->GetLength(); i++) {
-        if (currentNumber->GetNumber()[i] != comparedToNumber->GetNumber()[i]) {
+        if (currentNumber->GetDigit(i) != comparedToNumber->GetDigit(i)) {
             break;
         }
     }
@@ -92,11 +92,11 @@ bool Comparer::DecideIfNumberIsHigher(int index) {
 }
 
 bool Comparer::DigitIsHigher(int index) {
-    return currentNumber->GetNumber()[index] > comparedToNumber->GetNumber()[index];
+    return currentNumber->GetDigit(index) > comparedToNumber->GetDigit(index);
 }
 
 bool Comparer::DigitIsLower(int index) {
-    return currentNumber->GetNumber()[index] < comparedToNumber->GetNumber()[index];
+    return currentNumber->GetDigit(index) < comparedToNumber->GetDigit(index);
 }
 
 bool Comparer::IsLonger() {
@@ -122,7 +122,7 @@ bool Comparer::IsTheSame() {
 
 bool Comparer::IsTheSameDigits() {
     for (int i = 0; i < currentNumber->GetLength(); i++) {
-        if (currentNumber->GetNumber()[i] != comparedToNumber->GetNumber()[i]) {
+        if (currentNumber->GetDigit(i) != comparedToNumber->GetDigit(i)) {
             return false;
         }
     }

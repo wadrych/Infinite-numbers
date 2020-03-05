@@ -21,9 +21,6 @@
     <ClCompile Include="Comparer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Digit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Number.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,9 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comparer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Digit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Number.h">

@@ -4,6 +4,17 @@
 
 class Comparer
 {
+public:
+    Comparer();
+    ~Comparer();
+
+    bool IsBigger();
+    bool IsLower();
+    bool IsTheSame();
+
+    void SetCurrentNumber(Number* currentNumber);
+    void SetComparedToNumber(Number* comparedToNumber);
+	
 private:
     Number* currentNumber;
     Number* comparedToNumber;
@@ -22,15 +33,4 @@ private:
     bool DecideIfNumberIsHigher(int index);
     bool IsTheSameDigits();
     int FindDifferentDigit();
-
-public:
-    Comparer();
-    ~Comparer();
-
-    bool IsBigger();
-    bool IsLower();
-    bool IsTheSame();
-
-    void SetCurrentNumber(Number* currentNumber);
-    void SetComparedToNumber(Number* comparedToNumber);
 };

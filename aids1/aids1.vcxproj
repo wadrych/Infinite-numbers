@@ -139,14 +139,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Comparer.cpp" />
-    <ClCompile Include="Digit.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="NumbersArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comparer.h" />
-    <ClInclude Include="Digit.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="NumbersArray.h" />
   </ItemGroup>

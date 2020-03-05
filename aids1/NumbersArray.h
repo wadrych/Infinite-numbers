@@ -7,6 +7,16 @@
 
 class NumbersArray
 {
+public:
+    NumbersArray();
+    ~NumbersArray();
+
+    void Create();
+    void WriteAll();
+    void WriteMax();
+    void WriteMin();
+    void Add(int index1, int index2);
+	
 private:
     Number** numbersArray;
     Comparer comparer;
@@ -21,14 +31,4 @@ private:
     void CompareToExtremes(int currentIndex);
     void CompareToMax(int currentIndex);
     void CompareToMin(int currentIndex);
-
-public:
-    NumbersArray();
-    ~NumbersArray();
-
-    void Create();
-    void WriteAll();
-    void WriteMax();
-    void WriteMin();
-    void Add(int index1, int index2);
 };
