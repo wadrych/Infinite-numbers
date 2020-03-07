@@ -64,13 +64,18 @@ bool Comparer::CompareSignificantFigures() {
 }
 
 int Comparer::FindDifferentDigit() {
-    int i = 0;
+    unsigned int i = 0;
 
-    for (i; i < currentNumber->Length(); i++) {
+    for (; i < currentNumber->Length(); i++) {
         if (currentNumber->GetDigit(i) != comparedToNumber->GetDigit(i)) {
             break;
         }
+    	
     }
+	if(currentNumber->Length() == i)
+	{
+        i--;
+	}
 
     return i;
 }

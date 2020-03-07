@@ -138,15 +138,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Additor.cpp" />
+    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Comparer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="NumbersArray.cpp" />
+    <ClCompile Include="Subtractor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Additor.h" />
+    <ClInclude Include="Calculator.h" />
     <ClInclude Include="Comparer.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="NumbersArray.h" />
+    <ClInclude Include="Subtractor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

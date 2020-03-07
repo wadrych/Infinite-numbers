@@ -26,7 +26,7 @@ void NumbersArray::Create() {
 }
 
 void NumbersArray::GetRecordsAmountFromUser() {
-    scanf("%i\n", &recordsAmount);
+    scanf_s("%i\n", &recordsAmount);
 }
 
 void NumbersArray::InitializeNumbersArray() {
@@ -96,6 +96,14 @@ void NumbersArray::WriteMin() {
     numbersArray[indexOfMin]->WriteNumber();
 }
 
-void NumbersArray::Add(int index1, int index2) {
-	numbersArray[1]->PushDigitToStart(5);
+void NumbersArray::Add(int index1, int index2, int destination) {
+    Number* oldNumber = numbersArray[destination];
+    numbersArray[destination] = calculator.Add(numbersArray[index1], numbersArray[index2]);
+    delete oldNumber;
+}
+
+void NumbersArray::Subtract(int index1, int index2, int destination) {
+    Number* oldNumber = numbersArray[destination];
+    numbersArray[destination] = calculator.Subtract(numbersArray[index1], numbersArray[index2]);
+    delete oldNumber;
 }

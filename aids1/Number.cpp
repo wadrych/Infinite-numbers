@@ -18,7 +18,7 @@ void Number::WriteNumber() {
 }
 
 void Number::PrintSymbol() {
-    if(IsNegative()) {
+    if(IsNegative() && firstDigit->digit != 0) {
         printf("-");
 	}
 }
@@ -59,7 +59,7 @@ void Number::CreateNextDigit()
 
 void Number::ReadNextCharToBuffer()
 {
-    buffer = getchar_unlocked();
+    buffer = _getchar_nolock();
 }
 
 void Number::InitiateNumber()
@@ -133,6 +133,7 @@ void Number::DeleteDigit(DigitsList* &digit) {
     DigitsList* temp = digit->nextDigit;
     delete digit;
     digit = temp;
+	firstDigit = digit;
 }
 
 bool Number::IsPositive() {
@@ -149,7 +150,7 @@ size_t Number::Length() {
 
 char Number::GetDigit(int index) {
     DigitsList* searched_digit = firstDigit;
-    for(int i=0;i<index-1;i++) {
+    for(int i=0;i<index;i++) {
         searched_digit = searched_digit->nextDigit;
     }
 
@@ -168,4 +169,34 @@ void Number::PushDigitToStart(uint_fast8_t digit) {
     }
 
     numberOfDigits++;
+}
+
+void Number::InitiateCursor() {
+    cursor = lastDigit;
+}
+
+uint_fast8_t Number::GetNextDigit() {
+    uint_fast8_t temp;
+
+    if (cursor == NULL) {
+        return 0;
+    }
+	
+    temp = cursor->digit;
+    cursor = cursor->previousDigit;
+	
+    return temp;
+}
+
+
+void Number::InverseSymbol() {
+    isPositive = !isPositive;
+}
+
+void Number::CleanZerosInfront() {
+    DigitsList* current = firstDigit;
+
+    while ((current->digit == 0) && !(current->nextDigit == NULL)) {
+        DeleteDigit(current);
+    }
 }

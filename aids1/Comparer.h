@@ -14,19 +14,18 @@ public:
 
     void SetCurrentNumber(Number* currentNumber);
     void SetComparedToNumber(Number* comparedToNumber);
+    bool CompareLength();
+    bool BothHaveTheSameSymbol();
 	
 private:
     Number* currentNumber;
     Number* comparedToNumber;
 
-
-    bool BothHaveTheSameSymbol();
     bool BothAreNegative();
     bool BothArePositive();
     bool IsLonger();
     bool IsShorter();
     bool IsTheSameLength();
-    bool CompareLength();
     bool CompareSignificantFigures();
     bool DigitIsHigher(int index);
     bool DigitIsLower(int index);

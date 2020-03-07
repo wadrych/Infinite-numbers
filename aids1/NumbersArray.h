@@ -4,6 +4,7 @@
 
 #include "Number.h"
 #include "Comparer.h"
+#include "Calculator.h"
 
 class NumbersArray
 {
@@ -15,11 +16,14 @@ public:
     void WriteAll();
     void WriteMax();
     void WriteMin();
-    void Add(int index1, int index2);
+    void Add(int index1, int index2, int destination);
+    void Subtract(int index1, int index2, int destination);
 	
 private:
     Number** numbersArray;
     Comparer comparer;
+    Calculator calculator;
+	
     int recordsAmount;
     int indexOfMax;
     int indexOfMin;

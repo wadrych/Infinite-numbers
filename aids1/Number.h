@@ -25,6 +25,10 @@ public:
     bool IsNegative();
     char GetDigit(int index);
     size_t Length();
+    void InitiateCursor();
+    uint_fast8_t GetNextDigit();
+    void InverseSymbol();
+    void CleanZerosInfront();
 	
 private:
     bool isPositive;
@@ -33,6 +37,7 @@ private:
     DigitsList* lastDigit;
     size_t numberOfDigits;
     char buffer;
+    DigitsList* cursor;
 
     void ReadNextCharToBuffer();
     void DetermineSymbol();

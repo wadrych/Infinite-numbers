@@ -9,7 +9,7 @@ public:
     Additor();
     ~Additor();
 
-    void Add(Number* addend1, Number* addend2);
+    Number* Add(Number* addend1, Number* addend2);
 private:
     Number* biggerAddend;
     Number* smallerAddend;
