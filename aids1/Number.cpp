@@ -5,7 +5,7 @@ Number::Number() {
     isPositive = true;
     firstDigit = NULL;
     lastDigit = NULL;
-    buffer = NULL;
+    buffer = ' ';
     isInitiated = false;
 }
 
@@ -13,16 +13,24 @@ Number::~Number() {
 }
 
 void Number::WriteNumber() {
-    DigitsList* current = firstDigit;
+	PrintSymbol();
+	PrintDigits();
+}
 
-	if(IsNegative()) {
+void Number::PrintSymbol() {
+    if(IsNegative()) {
         printf("-");
 	}
-	
+}
+
+void Number::PrintDigits() {
+    DigitsList* current = firstDigit;
+
     do {
-        printf("%c", (char)current->digit);
+        printf("%i", current->digit);
         current = current->nextDigit;
     } while (current != NULL);
+
     printf("\n");
 }
 
@@ -51,7 +59,7 @@ void Number::CreateNextDigit()
 
 void Number::ReadNextCharToBuffer()
 {
-    buffer = _getchar_nolock();
+    buffer = getchar_unlocked();
 }
 
 void Number::InitiateNumber()
@@ -75,7 +83,7 @@ void Number::DetermineSymbol()
 
 void Number::AddNewDigit() {
     CreateNewListElement();
-    AppendNewDigitToList();
+    AppendNewDigitFromBufferToList();
 }
 
 void Number::CreateNewListElement()
@@ -84,8 +92,10 @@ void Number::CreateNewListElement()
         InitiateList();
 	}
     else {
+        DigitsList* temp = lastDigit;
         lastDigit->nextDigit = new DigitsList;
         lastDigit = lastDigit->nextDigit;
+        lastDigit->previousDigit = temp;
     }
 }
 
@@ -99,12 +109,13 @@ void Number::InitiateList()
 {
     firstDigit = new DigitsList;
     firstDigit->nextDigit = NULL;
+    firstDigit->previousDigit = NULL;
     lastDigit = firstDigit;
 }
 
-void Number::AppendNewDigitToList()
+void Number::AppendNewDigitFromBufferToList()
 {
-    lastDigit->digit = (uint_fast8_t)buffer;
+    lastDigit->digit = (uint_fast8_t)buffer - '0';
     lastDigit->nextDigit = NULL;
     numberOfDigits++;
 }
@@ -114,10 +125,14 @@ void Number::DeleteNumber() {
     DigitsList* current = firstDigit;
 	
     while (current != NULL) {
-        DigitsList* temp = current->nextDigit;
-        delete current;
-        current = temp;
+        DeleteDigit(current);
     }
+}
+
+void Number::DeleteDigit(DigitsList* &digit) {
+    DigitsList* temp = digit->nextDigit;
+    delete digit;
+    digit = temp;
 }
 
 bool Number::IsPositive() {
@@ -128,7 +143,7 @@ bool Number::IsNegative() {
     return !isPositive;
 }
 
-size_t Number::GetLength() {
+size_t Number::Length() {
     return numberOfDigits;
 }
 
@@ -139,4 +154,18 @@ char Number::GetDigit(int index) {
     }
 
     return (char)searched_digit->digit;
+}
+
+void Number::PushDigitToStart(uint_fast8_t digit) {
+    DigitsList* newElement = new DigitsList;
+    
+    newElement->nextDigit = firstDigit;
+    newElement->digit = digit;
+
+    firstDigit = newElement;
+    if(IsEmpty()) {
+        lastDigit = newElement;
+    }
+
+    numberOfDigits++;
 }

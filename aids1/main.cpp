@@ -5,9 +5,7 @@ int main() {
     NumbersArray numbersArray;
 
     numbersArray.Create();
-    numbersArray.WriteMax();
-    numbersArray.WriteMin();
-
+    numbersArray.WriteAll();
 
     return 0;
 }

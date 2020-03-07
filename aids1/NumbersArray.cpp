@@ -3,14 +3,20 @@
 NumbersArray::NumbersArray() {
     indexOfMax = 0;
     indexOfMin = 0;
+    recordsAmount = 0;
+    numbersArray = NULL;
 }
 
 NumbersArray::~NumbersArray() {
     for (int i = 0; i < recordsAmount; i++) {
-        numbersArray[i]->DeleteNumber();
-        delete numbersArray[i];
+        DeleteNumber(i);
     }
     delete[] numbersArray;
+}
+
+void NumbersArray::DeleteNumber(int index) {
+    numbersArray[index]->DeleteNumber();
+    delete numbersArray[index];
 }
 
 void NumbersArray::Create() {
@@ -20,14 +26,26 @@ void NumbersArray::Create() {
 }
 
 void NumbersArray::GetRecordsAmountFromUser() {
-    scanf_s("%i\n", &recordsAmount);
+    scanf("%i\n", &recordsAmount);
 }
 
 void NumbersArray::InitializeNumbersArray() {
+    InitializeArray();
+    InitializeNumbers();
+}
+
+void NumbersArray::InitializeArray() {
     numbersArray = new Number*[recordsAmount];
+}
+
+void NumbersArray::InitializeNumbers() {
 	for(int i = 0; i < recordsAmount; i++) {
-        numbersArray[i] = new Number;
+        InitializeNumber(i);
 	}
+}
+
+void NumbersArray::InitializeNumber(int index) {
+    numbersArray[index] = new Number;
 }
 
 void NumbersArray::PopulateArrayWithNumbersFromUser() {
@@ -79,5 +97,5 @@ void NumbersArray::WriteMin() {
 }
 
 void NumbersArray::Add(int index1, int index2) {
-	
+	numbersArray[1]->PushDigitToStart(5);
 }

@@ -31,4 +31,8 @@ private:
     void CompareToExtremes(int currentIndex);
     void CompareToMax(int currentIndex);
     void CompareToMin(int currentIndex);
+    void DeleteNumber(int index);
+    void InitializeNumber(int index);
+    void InitializeNumbers();
+    void InitializeArray();
 };

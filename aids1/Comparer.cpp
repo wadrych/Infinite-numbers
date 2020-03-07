@@ -66,7 +66,7 @@ bool Comparer::CompareSignificantFigures() {
 int Comparer::FindDifferentDigit() {
     int i = 0;
 
-    for (i; i < currentNumber->GetLength(); i++) {
+    for (i; i < currentNumber->Length(); i++) {
         if (currentNumber->GetDigit(i) != comparedToNumber->GetDigit(i)) {
             break;
         }
@@ -100,7 +100,7 @@ bool Comparer::DigitIsLower(int index) {
 }
 
 bool Comparer::IsLonger() {
-    return currentNumber->GetLength() > comparedToNumber->GetLength();
+    return currentNumber->Length() > comparedToNumber->Length();
 }
 
 bool Comparer::IsShorter() {
@@ -108,7 +108,7 @@ bool Comparer::IsShorter() {
 }
 
 bool Comparer::IsTheSameLength() {
-    return currentNumber->GetLength() == comparedToNumber->GetLength();
+    return currentNumber->Length() == comparedToNumber->Length();
 }
 
 bool Comparer::IsTheSame() {
@@ -121,7 +121,7 @@ bool Comparer::IsTheSame() {
 }
 
 bool Comparer::IsTheSameDigits() {
-    for (int i = 0; i < currentNumber->GetLength(); i++) {
+    for (int i = 0; i < currentNumber->Length(); i++) {
         if (currentNumber->GetDigit(i) != comparedToNumber->GetDigit(i)) {
             return false;
         }

@@ -7,6 +7,7 @@
 typedef struct DigitsList {
     uint_fast8_t digit;
     DigitsList* nextDigit;
+    DigitsList* previousDigit;
 } DigitsList;
 
 class Number
@@ -18,11 +19,12 @@ public:
     void WriteNumber();
     void CreateNumber();
     void DeleteNumber();
+    void PushDigitToStart(uint_fast8_t digit);
 
     bool IsPositive();
     bool IsNegative();
     char GetDigit(int index);
-    size_t GetLength();
+    size_t Length();
 	
 private:
     bool isPositive;
@@ -35,12 +37,15 @@ private:
     void ReadNextCharToBuffer();
     void DetermineSymbol();
     void InitiateList();
-    void AppendNewDigitToList();
+    void AppendNewDigitFromBufferToList();
     bool IsNotEOL();
     void CreateNextDigit();
     void InitiateNumber();
     void AddNewDigit();
     void CreateNewListElement();
     bool IsEmpty();
+    void PrintSymbol();
+    void PrintDigits();
+    void DeleteDigit(DigitsList* &digit);
 };
 
