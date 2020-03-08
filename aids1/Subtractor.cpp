@@ -14,8 +14,16 @@ Number* Subtractor::Subtract(Number* number1, Number* number2) {
 	comparer.SetComparedToNumber(number2);
 	
 	if(comparer.CompareLength()) {
-		minuend = number1;
-		subtrahend = number2;
+		if(number1->Length() >= number2->Length())
+		{
+			minuend = number1;
+			subtrahend = number2;
+		}
+		else
+		{
+			minuend = number2;
+			subtrahend = number1;
+		}
 	}
 	else {
 		result->InverseSymbol();
@@ -33,17 +41,17 @@ Number* Subtractor::Subtract(Number* number1, Number* number2) {
 	subtrahend->InitiateCursor();
 	
 	while (true) {
-		uint_fast8_t min;
-		uint_fast8_t sub;
-		uint_fast8_t difference = 0;
+		int_fast8_t min;
+		int_fast8_t sub;
+		int_fast8_t difference = 0;
 		if (minuend == subtrahend)
 		{
-			min = minuend->GetNextDigit();
+			min = minuend->GetNextDigit() + loan;
 			sub = min;
 		}
 		else
 		{
-			min = minuend->GetNextDigit();
+			min = minuend->GetNextDigit() + loan;
 			sub = subtrahend->GetNextDigit();
 		}
 

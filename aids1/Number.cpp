@@ -162,6 +162,11 @@ void Number::PushDigitToStart(uint_fast8_t digit) {
     
     newElement->nextDigit = firstDigit;
     newElement->digit = digit;
+    newElement->previousDigit = NULL;
+	if(firstDigit != NULL)
+	{
+        firstDigit->previousDigit = newElement;
+	}
 
     firstDigit = newElement;
     if(IsEmpty()) {

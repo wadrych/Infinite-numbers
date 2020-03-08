@@ -27,6 +27,8 @@ private:
     int recordsAmount;
     int indexOfMax;
     int indexOfMin;
+    int indexOfLastMax;
+    int indexOfLastMin;
 
     void GetRecordsAmountFromUser();
     void InitializeNumbersArray();
